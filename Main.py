@@ -26,7 +26,7 @@ if credit_amount <= 300000:     #Проверка вида кредитован�
 else:
     credit_term = Input_Check_Args.inputting_term(Cash_Loan.MIN_TERM, Cash_Loan.MAX_TERM)
 
-if input("Являетесь ли Вы лучшим клиентом банка? [y/n]: ") == 'y':  #Проверка на статуса "Лучший клиент
+if input("Являетесь ли Вы лучшим клиентом банка? [y/n]: ") == 'y':  #Проверка на статуса "Лучший клиент"
     is_best_client = True
 
 
@@ -53,7 +53,7 @@ else:                               #Блок "Кредит наличными"
     else:
         BANKING_SERVICES = Cash_Loan.BANKING_SERVICES_48_60
 
-monthly_payment = Calculation_Of_Payments.calc(credit_term, credit_amount, INTEREST_RATE, BANKING_SERVICES)
+monthly_payment = Calculation_Of_Payments.calc_monthly_fee(credit_term, credit_amount, INTEREST_RATE, BANKING_SERVICES)
 
 print("\nКороткая информация:")
 print("\tСрок кредитования: %d" % credit_term)
@@ -65,4 +65,4 @@ print(monthly_payment * credit_term - credit_amount)
 
 print("\n")
 print("Месяц:\tЕжемесячный платеж:\tНачисленный процент:\tОстаток долга:")
-Calculation_Of_Payments.x(credit_term, credit_amount, INTEREST_RATE, monthly_payment, BANKING_SERVICES)
+Calculation_Of_Payments.calc_balance_of_debt(credit_term, credit_amount, INTEREST_RATE, monthly_payment, BANKING_SERVICES)

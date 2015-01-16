@@ -15,7 +15,7 @@ from math import pow
 #                                         ((1 + (ставка / 12 мес)) ^ срок) - 1
 
 
-def calc(term, amount, rate, service):
+def calc_monthly_fee(term, amount, rate, service):
     """ Расчет ежемесячного платежа """
 
     rate = (rate / 100) / 12    #Процентная ставка исчисляется в процентах, и в расчет берется месяц, т.е. делим на 12
@@ -24,7 +24,17 @@ def calc(term, amount, rate, service):
     return int(amount * rate / (1 - 1 / pow((1 + rate), term)) + service)
 
 
-def x(term, amount, rate, monthly_fee, service):
+def calc_balance_of_debt(term, amount, rate, monthly_fee, service):
+    """
+    Расчет остатка долга
+
+    :param term: Срок кредитования
+    :param amount: Сумма кредитования
+    :param rate: Процентная ставка
+    :param monthly_fee: Ежемесячный платеж
+    :param service: Банковское обслуживание
+    :return:
+    """
     balance_of_debt = amount
     service = amount * (service / 100)
 
