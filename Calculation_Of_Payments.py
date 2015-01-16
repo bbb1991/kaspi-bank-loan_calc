@@ -41,6 +41,6 @@ def calc_balance_of_debt(term, amount, rate, monthly_fee, service):
     for i in range(1, term + 1, 1):
         month = i
         credited = balance_of_debt * ((rate / 100) / 12) + service
-        print(month, "\t\t", monthly_fee, "\t\t\t\t", int(credited), "\t\t\t\t\t", int(balance_of_debt))
+        print(month, "\t", monthly_fee, "\t\t\t", int(credited), "\t\t\t", int(balance_of_debt))
         balance_of_debt -= monthly_fee - credited
 
