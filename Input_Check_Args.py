@@ -1,5 +1,10 @@
 __author__ = 'bbb1991'
 
+MIN_SUM = 20000     # минимальная сумма кредитования
+MAX_SUM = 1000000   # максимальная сумма кредитования
+STEP_BY_MONTH = 3   # шаг кредитования в мес. (3, 6, 9 ... мес)
+STEP_BY_SUM = 10000 # шаг кредитования в сумме (20000, 30000 ... тенге)
+
 
 def inputting_amount():
     """
@@ -8,20 +13,20 @@ def inputting_amount():
     while True:
         amount = int(input("Введите сумму кредитования: "))
 
-        if amount < 20000:
-            print("Ошибка! Минимальная сумма кредитования 20 000 тенге!")
-        elif amount > 2000000:
-            print("Ошибка! Максиимальная сумма кредитования 2 000 000 тенге!")
+        if amount < MIN_SUM:
+            print("Ошибка! Минимальная сумма кредитования %d тенге!" % MIN_SUM)
+        elif amount > MAX_SUM:
+            print("Ошибка! Максиимальная сумма кредитования %d тенге!" % MAX_SUM)
         else:
-            if not amount % 10000 == 0:
+            if not amount % STEP_BY_SUM == 0:
                 print("Внимание! Вы ввели некорректное значение!")
                 print("Значение суммы будет округлена до ближайшего корректного значения:", end=' ')
 
                 # Округление необходима, т.к. это условия оформления
-                if amount % 10000 < 5000:
-                    amount -= amount % 10000
+                if amount % STEP_BY_SUM < STEP_BY_SUM/2:
+                    amount -= amount % STEP_BY_SUM
                 else:
-                    amount += 10000 - amount % 10000
+                    amount += STEP_BY_SUM - amount % STEP_BY_SUM
                 print(amount)
             break
     return amount
@@ -36,15 +41,15 @@ def inputting_term(min_term, max_term):
         elif term > max_term:
             print("Ошибка! Максимальный срок кредитования %d мес." % max_term)
         else:
-            if term % 3 != 0:
-                print("Введена некорректное значение. Шаг кредитования составляет 3 мес.")
+            if term % STEP_BY_MONTH != 0:
+                print("Введена некорректное значение. Шаг кредитования составляет %d мес." % STEP_BY_MONTH)
                 print("Значение будет округлена до ближайшего значения: ", end='')
 
                 # Округление необходима, т.к. это условия оформления
-                if term % 3 < 1.5:
-                    term -= term % 3
+                if term % STEP_BY_MONTH < 1.5:
+                    term -= term % STEP_BY_MONTH
                 else:
-                    term += 3 - term % 3
+                    term += STEP_BY_MONTH - term % STEP_BY_MONTH
 
                 print(term)
             break
